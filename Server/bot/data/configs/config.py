@@ -7,7 +7,7 @@ load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
 # --JSON--
-with open("bot\\data\\configs\\config.json", "r") as file:
+with open("Server\\bot\\data\\configs\\config.json", "r") as file:
     j = json.load(file)
     
 # --texts--
