@@ -28,8 +28,8 @@ class Telegram_rest_bot:
             await message.answer(config.welcome_text,
                                  parse_mode = 'html',
                                  reply_markup = keyboards.main_keyboard)
-        
-    async def start(self) -> None:
+            
+    async def main(self) -> None:
         print(f"{self.admin} is started bot!")
         await self.bot.delete_webhook(drop_pending_updates = True)
         await self.dp.start_polling(self.bot)
@@ -37,5 +37,5 @@ class Telegram_rest_bot:
 if __name__ == '__main__':
     tg_bot = Telegram_rest_bot(TOKEN = config.TOKEN, ADMIN = config.j['ADMIN'])
     asyncio.run(tg_bot.listen())
-    asyncio.run(tg_bot.start())
+    asyncio.run(tg_bot.main())
         
