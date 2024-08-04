@@ -18,7 +18,7 @@ class Telegram_rest_bot:
         self.admin = ADMIN
         
         self.bot = Bot(TOKEN)
-        self.dp = Dispatcher()
+        self.dp = Dispatcher() 
         
     async def listen(self) -> None:
         # == start ==
