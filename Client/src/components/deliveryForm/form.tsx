@@ -4,12 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import style from './form.module.css'
 import { TypeFormSchema, formSchema } from './schema/inputsSchema'
+import { useTelegram } from '../../hooks/useTelegram'
 
 type Props = {
 	children: JSX.Element
 }
 
 const Form: FC<Props> = ({ children }) => {
+	const { tg } = useTelegram()
 	const {
 		handleSubmit,
 		register,
@@ -19,7 +21,10 @@ const Form: FC<Props> = ({ children }) => {
 		resolver: zodResolver(formSchema),
 	})
 
-	const onSubmit: SubmitHandler<TypeFormSchema> = data => console.log(data)
+	const onSubmit: SubmitHandler<TypeFormSchema> = data => {
+		tg.sendData(data)
+		console.log(data);
+	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
