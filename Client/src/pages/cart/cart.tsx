@@ -57,7 +57,10 @@ const Cart = () => {
 				<div className={style.order}>
 					{cart?.map((item: CartItem, i) => (
 						<div className={style.item} key={i}>
-							<img src={item.imageUrl} alt='image' className={style.image} />
+							<div
+								className={style.imageContainer}
+								style={{ backgroundImage: `url(${item.imageUrl})` }}
+							/>
 							<div className={style.itemBody}>
 								<div className={style.itemHeader}>
 									<h3 className={style.itemName}>{item.name}</h3>
@@ -68,17 +71,23 @@ const Cart = () => {
 										alt='Delete'
 									/>
 								</div>
-								<PriceAndQuantity price={item.price} quantity={item.quantity} item={item}/>
+								<PriceAndQuantity
+									price={item.price}
+									quantity={item.quantity}
+									item={item}
+								/>
 							</div>
 						</div>
 					))}
 				</div>
 				<div className={style.totalPrice}>Сумма: {totalPrice} р.</div>
 				<Form>
-					<div className={style.cartTotal} >
-						<p className={style.totalText} >Сумма: {totalPrice} р.</p>
-						<p className={style.totalText} >Доставка курьером: 299 р.</p>
-						<p className={style.totalStrong} >Итоговая сумма: {totalPrice + 299} р.</p>
+					<div className={style.cartTotal}>
+						<p className={style.totalText}>Сумма: {totalPrice} р.</p>
+						<p className={style.totalText}>Доставка курьером: 299 р.</p>
+						<p className={style.totalStrong}>
+							Итоговая сумма: {totalPrice + 299} р.
+						</p>
 					</div>
 				</Form>
 			</div>
