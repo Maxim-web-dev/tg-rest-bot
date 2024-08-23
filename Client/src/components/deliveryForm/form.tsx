@@ -22,7 +22,7 @@ const Form: FC<Props> = ({ children }) => {
 	})
 
 	const onSubmit: SubmitHandler<TypeFormSchema> = data => {
-		tg.sendData(data)
+		tg.sendData(JSON.stringify(data))
 		console.log(data);
 	}
 

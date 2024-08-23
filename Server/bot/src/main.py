@@ -1,6 +1,6 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
-from aiogram.types import Message
+from aiogram.types import Message, WebAppData
 
 #config
 import os, sys
@@ -28,14 +28,22 @@ class Telegram_rest_bot:
             await message.answer(config.welcome_text,
                                  parse_mode = 'html',
                                  reply_markup = keyboards.main_keyboard)
-            
+        
+        # -- echo -- 
+        @self.dp.message()
+        async def echo(message: Message):
+            if message.text.lower() == 'информация о заказе':
+                await message.answer(text = f"Данные о вашем заказе: {message.web_app_data.data}")
+ 
     async def main(self) -> None:
-        print(f"{self.admin} is started bot!")
+        print(f"{self.admin} is started bot !")
         await self.bot.delete_webhook(drop_pending_updates = True)
         await self.dp.start_polling(self.bot)
         
+        
 if __name__ == '__main__':
     tg_bot = Telegram_rest_bot(TOKEN = config.TOKEN, ADMIN = config.j['ADMIN'])
+    
     asyncio.run(tg_bot.listen())
     asyncio.run(tg_bot.main())
         
